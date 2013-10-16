@@ -1,14 +1,511 @@
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html>
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            
+            body {
+    width: 100%;
+}
+
+thead { 
+    background-color: cyan;
+}
+td {
+    border: 1px solid;
+}
+
+
+        </style>
+        
     </head>
     <body>
-        <div>TODO write content</div>
+        <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Concepte</th>
+                    <th>Exemple</th>
+                    <th>Resultat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Variables</td>
+                    <td>
+                        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;script&gt;
+var x=2;
+var y=3;
+var z=x+y;
+var w=""+x+y;
+
+document.write("X: "+ x + "&lt;br&gt;");
+document.write("Y: "+ y + "&lt;br&gt;");
+document.write("Suma: "+ z + "&lt;br&gt;");
+document.write("Concatenacion: " + w + "&lt;br&gt;");
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </pre>
+                    </td>
+                    <td>
+                        <pre>
+X: 2
+Y: 3
+Suma: 5
+Concatenacion: 23
+                        </pre>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>DataTypes</td>
+                    <td>
+                        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;script&gt;
+var x=2;
+var y="3";
+var n="Dani";
+var z=false;
+var arr=["posicio0", "posicio1"];
+var coche={marca:"Ford", model:"Mustang", bastidor:784521};
+
+document.write("Numero: " + x + "&lt;br&gt;");
+document.write("String1: " + y + "&lt;br&gt;");
+document.write("String2: " + n + "&lt;br&gt;");
+document.write("Boolean: " + z + "&lt;br&gt;");
+document.write("Array[0]: " + arr[0] + "&lt;br&gt;");
+document.write("Array[1]: " + arr[1] + "&lt;br&gt;");
+document.write("Objeto coche: Modelo: " + coche.model +" Marca: "+ coche.marca +" Bastidor: "+ coche.bastidor +"&lt;br&gt;");
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </pre>
+                    </td>
+                    <td>
+                        <pre>
+Numero: 2
+String1: 3
+String2: Dani
+Boolean: false
+Array[0]: posicio0
+Array[1]: posicio1
+Objeto coche: Modelo: Mustang Marca: Ford Bastidor: 784521
+                        </pre>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Objetos y funciones</td>
+                    <td>
+                        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;script&gt;
+
+function metodo_encender(){
+   coche.estado="encendido";
+}
+
+var coche={marca:"Ford", model:"Mustang", bastidor:784521, estado:"apagado", encender:metodo_encender};
+
+
+document.write("Objeto coche: Modelo: " + coche.model +" Marca: "+ coche.marca +" Bastidor: "+ coche.bastidor +" Estado: "+ coche.estado +"&lt;br&gt;");
+
+function encender(){
+   coche.encender();
+   document.write("Estado: "+ coche.estado +"&lt;br&gt;");
+   document.write("Broom, broom!");
+}
+
+&lt;/script&gt;
+&lt;button id="button" onclick="javascript:encender();"&gt;Encender&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                        </pre>
+                    </td>
+                    <td>
+                        <p id="c"></p>
+                        <button id="button" onclick="javascript:encender();">Encender</button>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Operadores</td>
+                    <td>
+                        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Calculadora&lt;/p&gt;
+&lt;input id="a"/&gt;
+&lt;input id="b"/&gt;
+&lt;button onclick="Suma()"&gt;Suma&lt;/button&gt;
+&lt;button onclick="Resta()"&gt;Resta&lt;/button&gt;
+&lt;button onclick="Multiplicacion()"&gt;Multiplicacion&lt;/button&gt;
+&lt;button onclick="Division()"&gt;Division&lt;/button&gt;
+
+&lt;p id="demo"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function Suma()
+{
+var x=document.getElementById("a");
+var xn=parseFloat(x.value);
+var y =document.getElementById("b");
+var yn=parseFloat(y.value);
+var z=xn+yn;
+document.getElementById("demo").innerHTML=z;
+}
+function Resta()
+{
+var x=document.getElementById("a");
+var xn=parseFloat(x.value);
+var y =document.getElementById("b");
+var yn=parseFloat(y.value);
+var z=xn-yn;
+document.getElementById("demo").innerHTML=z;
+}
+function Multiplicacion()
+{
+var x=document.getElementById("a");
+var xn=parseFloat(x.value);
+var y =document.getElementById("b");
+var yn=parseFloat(y.value);
+var z=xn*yn;
+document.getElementById("demo").innerHTML=z;
+}
+function Division()
+{
+var x=document.getElementById("a");
+var xn=parseFloat(x.value);
+var y =document.getElementById("b");
+var yn=parseFloat(y.value);
+var z=xn/yn;
+document.getElementById("demo").innerHTML=z;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </pre>
+                    </td>
+                    <td> 
+<input id="a"/>
+<input id="b"/><br/>
+<button onclick="Suma()">Suma</button>
+<button onclick="Resta()">Resta</button>
+<button onclick="Multiplicacion()">Multiplicacion</button>
+<button onclick="Division()">Division</button>
+                        <p id="demo"></p>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Comparaciones y Condiciones</td>
+                    <td>
+                        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;input id="age"/&gt;
+&lt;button id="bage" onclick="javascript:calc()"&gt;Comproba la teva edat&lt;/button&gt;
+
+&lt;script&gt;
+function calc (){
+if (!isNaN(document.getElementById("age").value)){
+var edat = parseFloat(document.getElementById("age").value);
+if (edat&lt;18){
+alert ("Ets menor, torna a l'insti!");
+}
+else if(edat == 18){
+alert("Justet justet");
+}
+else{
+alert("A currar, deixa de perdre el temps!");
+}
+}
+else {
+alert("Edat no valida");
+}
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </pre>
+                    </td>
+                    <td> 
+                        <input id="age"/>
+<button id="bage" onclick="javascript:calc()">Comproba la teva edat</button>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Switch</td>
+                    <td>
+                        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;button onclick="meses()"&gt;Calcula el mes!&lt;/button&gt;
+
+&lt;p id="mes"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function meses()
+{
+var x;
+var d=new Date().getMonth();
+switch (d)
+  {
+  case 0:
+    x="Enero";
+    break;
+  case 1:
+    x="Febrero";
+    break;
+  case 2:
+    x="Marzo";
+    break;
+  case 3:
+    x="Abril";
+    break;
+  case 4:
+    x="Mayo";
+    break;
+  case 5:
+    x="Junio";
+    break;
+case 6:
+    x="Julio";
+    break;
+case 7:
+    x="Agosto";
+    break;
+case 8:
+    x="Setiembre";
+    break;
+  case 9:
+    x="Octubre";
+    break;
+case 10:
+    x="Noviembre";
+    break;
+case 11:
+    x="Diciembre";
+    break;
+  }
+document.getElementById("mes").innerHTML=x;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </pre>
+                    </td>
+                    <td> 
+<button onclick="meses()">Calcula el mes!</button>
+<p id="mes"></p> 
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Bucles</td>
+                    <td>
+                        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;button onclick="bucle()"&gt;Bucle&lt;/button&gt;
+
+&lt;p id="mes"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function bulce (){
+var x="";
+for (var i=0; i<10;i++){
+    x=x+i+" ";
+}
+document.getElementById("for").innerHTML=x;
+var y=0
+var res="";
+while (y!=5){
+res=res+"* *"+y;
+y++;
+}
+document.getElementById("while").innerHTML=res;
+}
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </pre>
+                    </td>
+            
+                    <td> 
+                        <button onclick="bucle()">Bucle</button>
+            <p id="for"></p><br/>
+            <p id="while"></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <script>
+function bucle (){
+var x="";
+for (var i=0; i<10;i++){
+    x=x+i+" ";
+}
+document.getElementById("for").innerHTML=x;
+var y=0
+var res="";
+while (y!=5){
+res=res+"* *"+y;
+y++;
+}
+document.getElementById("while").innerHTML=res;
+}
+
+            
+function metodo_encender(){
+   coche.estado="encendido";
+}
+
+var coche={marca:"Ford", model:"Mustang", bastidor:784521, estado:"apagado", encender:metodo_encender};
+
+document.getElementById("c").innerHTML="Objeto coche: Modelo: " + coche.model +" Marca: "+ coche.marca +" Bastidor: "+ coche.bastidor +" Estado: "+ coche.estado;
+
+function encender(){
+   coche.encender();
+   alert("Estado: "+ coche.estado +". Broom, broom!");
+}
+
+            
+            
+function Suma()
+{
+var x=document.getElementById("a");
+var xn=parseFloat(x.value);
+var y =document.getElementById("b");
+var yn=parseFloat(y.value);
+var z=xn+yn;
+document.getElementById("demo").innerHTML=z;
+}
+function Resta()
+{
+var x=document.getElementById("a");
+var xn=parseFloat(x.value);
+var y =document.getElementById("b");
+var yn=parseFloat(y.value);
+var z=xn-yn;
+document.getElementById("demo").innerHTML=z;
+}
+function Multiplicacion()
+{
+var x=document.getElementById("a");
+var xn=parseFloat(x.value);
+var y =document.getElementById("b");
+var yn=parseFloat(y.value);
+var z=xn*yn;
+document.getElementById("demo").innerHTML=z;
+}
+function Division()
+{
+var x=document.getElementById("a");
+var xn=parseFloat(x.value);
+var y =document.getElementById("b");
+var yn=parseFloat(y.value);
+var z=xn/yn;
+document.getElementById("demo").innerHTML=z;
+}
+
+function calc (){
+if (!isNaN(document.getElementById("age").value)){
+var edat = parseFloat(document.getElementById("age").value);
+if (edat<18){
+alert ("Ets menor, torna a l'insti!");
+}
+else if(edat == 18){
+alert("Justet justet");
+}
+else{
+alert("A currar, deixa de perdre el temps!");
+}
+}
+else {
+alert("Edat no valida");
+}
+}
+
+
+function meses()
+{
+var x;
+var d=new Date().getMonth();
+switch (d)
+  {
+  case 0:
+    x="Enero";
+    break;
+  case 1:
+    x="Febrero";
+    break;
+  case 2:
+    x="Marzo";
+    break;
+  case 3:
+    x="Abril";
+    break;
+  case 4:
+    x="Mayo";
+    break;
+  case 5:
+    x="Junio";
+    break;
+case 6:
+    x="Julio";
+    break;
+case 7:
+    x="Agosto";
+    break;
+case 8:
+    x="Setiembre";
+    break;
+  case 9:
+    x="Octubre";
+    break;
+case 10:
+    x="Noviembre";
+    break;
+case 11:
+    x="Diciembre";
+    break;
+  }
+document.getElementById("mes").innerHTML=x;
+}
+</script>
     </body>
+    
 </html>
