@@ -9,6 +9,51 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <div>TODO write content</div>
+        <div>
+            <button id="clasica" onclick="clasica();">Versió Clasica</button>
+            <button id="callback" onclick="ambCallback(selectRandom());">Versió Callback</button>
+        </div>
+    <script>
+        function ambCallback(funcioAExecutar){
+            funcioAExecutar();
+        }
+        function selectRandom(){
+            var x = Math.floor(Math.random()+1);
+            switch (x){
+                case 0: segona(); break;
+                case 1: tercero(); break;
+            };
+        }
+        function clasica (){
+            primera();
+        }
+        function primera (){
+            console.log("Empieza la ejecución de primera()");
+            console.log("Llamo a segunda()");
+            segona();
+            console.log("Acabo de llamar a segunda desde primera()");
+            console.log(" Llamo a tercera()desde primera()");
+            tercera();
+            console.log("Acabo de llamar a tercera desde primera()");
+            console.log("Acaba la ejecución de primera()");
+        }
+        function segona () {
+            console.log("Empieza la ejecución de segunda()");
+            console.log("Entro al bucle llarg");
+            for (var i=0; i<5000;i++){}
+            console.log("Surto del bucle llarg");
+            console.log("Acaba la ejecución de segunda()");
+        }
+        function tercera () {
+            console.log("Empieza la ejecución de tercera()");
+            console.log("Entro al bucle llarg()");
+            for (var i=0; i<5000;i++){}
+            console.log("Surto del bucle llarg()");
+            console.log("Acaba la ejecución de tercera()");
+        }
+        function cuarta () {
+            
+        }
+    </script>
     </body>
 </html>
