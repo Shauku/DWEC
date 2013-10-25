@@ -12,15 +12,20 @@ and open the template in the editor.
         <div>
             <button id="clasica" onclick="clasica();">Versió Clasica</button>
             <button id="callback" onclick="ambCallback(selectRandom());">Versió Callback</button>
-            <button id="asincrono" onclick="asincrona();">Versió Asincrona</button>
+            <button id="asincrono" onclick="asincrona(cuarta());">Versió Asincrona</button>
             
         </div>
     <script>
         function asincrona(funcioAExecutar){
-            
+            console.log("Llamo a primera()");
+            primera();
+            console.log("Llamo a segunda(callback)");
+            segunda(funcioAExecutar);
+            console.log("Termina principal()");
         }
         function ambCallback(funcioAExecutar){
-            console.log("Empieza la ejecución de primera()");
+            console.log("Llamo a primera()");
+            primera();
             console.log("Llamo a segunda() o tercera () desde principal()");
             funcioAExecutar();
             console.log("Llamo a segunda() o tercera () desde principal()");
@@ -35,16 +40,27 @@ and open the template in the editor.
             };
         }
         function clasica (){
+            console.log("Llamo a primera()");
             primera();
+            console.log("Llamo a segunda()");
+            segona();
+            console.log("Acabo de llamar a segunda desde principal()");
+            console.log(" Llamo a tercera()desde principal()");
+            tercera();
+            console.log("Acabo de llamar a tercera desde principal()");
+        }
+        function segona (callback){
+            console.log("Empeiza segunda(callback)");
+            console.log("Empieza el Timeout de cuarta()");
+            setTimeout(callback, 7000);
+            console.log("Acabo de llamar al Timeout con cuarta()");
+            console.log("Termina segunda()");
         }
         function primera (){
             console.log("Empieza la ejecución de primera()");
-            console.log("Llamo a segunda()");
-            segona();
-            console.log("Acabo de llamar a segunda desde primera()");
-            console.log(" Llamo a tercera()desde primera()");
-            tercera();
-            console.log("Acabo de llamar a tercera desde primera()");
+            console.log("Entro al bucle llarg");
+            for (var i=0; i<5000;i++){}
+            console.log("Surto del bucle llarg");
             console.log("Acaba la ejecución de primera()");
         }
         function segona () {
