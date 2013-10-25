@@ -11,7 +11,7 @@ and open the template in the editor.
     <body>
         <div>
             <button id="clasica" onclick="clasica();">Versió Clasica</button>
-            <button id="callback" onclick="ambCallback(selectRandom);">Versió Callback</button>
+            <button id="callback" onclick="ambCallback();">Versió Callback</button>
             <button id="asincrono" onclick="asincrona(cuarta);">Versió Asincrona</button>
             <p>Conclusiones: Una funcion callback es una funcion que recibe como parametro otra funcion, para que esta pueda
             ser ejecutada dentro de la primera funcion. Esto no hace que sea asíncrona, para conseguir un efecto asíncrono 
@@ -26,21 +26,24 @@ and open the template in the editor.
             segunda(funcioAExecutar);
             console.log("Termina principal()");
         }
-        function ambCallback(funcioAExecutar){
+        function ambCallback(){
             console.log("Llamo a primera()");
             primera();
-            console.log("Llamo a segunda() o tercera () desde principal()");
-            funcioAExecutar();
-            console.log("Llamo a segunda() o tercera () desde principal()");
-            funcioAExecutar();
+            console.log("Hago el random");
+            selectRandom();
             console.log("Acaba la ejecución de primera()");
         }
         function selectRandom(){
             var x = Math.round(Math.random());
             switch (x){
-                case 0: segona(); break;
-                case 1: tercera(); break;
+                case 0: TextRandomCode(segona); break;
+                case 1: TextRandomCode(tercera); break;
             };
+        }
+        function TestRandomCode(functionToExec){
+            console.log("Empieza la ejecucion de una de las funciones");
+            functionToExec();
+            console.log("Termina la ejecucion de una de las funciones");
         }
         function clasica (){
             console.log("Llamo a primera()");
