@@ -11,9 +11,12 @@ and open the template in the editor.
     <body>
         <div>
             <button id="clasica" onclick="clasica();">Versió Clasica</button>
-            <button id="callback" onclick="ambCallback(selectRandom());">Versió Callback</button>
-            <button id="asincrono" onclick="asincrona(cuarta());">Versió Asincrona</button>
-            
+            <button id="callback" onclick="ambCallback(selectRandom);">Versió Callback</button>
+            <button id="asincrono" onclick="asincrona(cuarta);">Versió Asincrona</button>
+            <p>Conclusiones: Una funcion callback es una funcion que recibe como parametro otra funcion, para que esta pueda
+            ser ejecutada dentro de la primera funcion. Esto no hace que sea asíncrona, para conseguir un efecto asíncrono 
+            con una funcion es necesario utilizar el metodo setTimeout(funcion, delay) que llama a la funcion especificada
+            una vez el delay (en milisegundos) haya transcurrido.</p>
         </div>
     <script>
         function asincrona(funcioAExecutar){
@@ -33,10 +36,10 @@ and open the template in the editor.
             console.log("Acaba la ejecución de primera()");
         }
         function selectRandom(){
-            var x = Math.floor(Math.random()+1);
+            var x = Math.round(Math.random());
             switch (x){
                 case 0: segona(); break;
-                case 1: tercero(); break;
+                case 1: tercera(); break;
             };
         }
         function clasica (){
@@ -49,10 +52,10 @@ and open the template in the editor.
             tercera();
             console.log("Acabo de llamar a tercera desde principal()");
         }
-        function segona (callback){
+        function segunda (callback){
             console.log("Empeiza segunda(callback)");
             console.log("Empieza el Timeout de cuarta()");
-            setTimeout(callback, 7000);
+            setTimeout(callback, 5000);
             console.log("Acabo de llamar al Timeout con cuarta()");
             console.log("Termina segunda()");
         }
