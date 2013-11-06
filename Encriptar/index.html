@@ -17,7 +17,8 @@
             <p id="desenc"></p>
         </div>
         <script> 
-            var mes = Date.now().getMonth();
+            var data = new Date;
+            var mes = data.getMonth();
             
             function encriptar(){
                 var result = "";
@@ -25,18 +26,26 @@
                 for (var i=0;i<text.length;i++){
                     var c = text.toString().charAt(i);
                     var ascii = c.charCodeAt(0);
-                    ascii = Math.pow(ascii, 3);
+                    ascii = Math.pow(ascii, 2);
                     ascii = ascii+mes;
                     result+= String.fromCharCode(ascii);
                 }
                 result+="#";
                 result+=mes;
-                document.getElementById(enc).innerHTML = result;
+                document.getElementById("enc").innerHTML = result;
             }
             
             function desenecriptar() {
+                var result = "";
                 var text = document.getElementById("denc").value;
-                
+                var array=text.toString().split("#");
+                for (var x in array[0]){
+                    var ascii = x.charCodeAt(0);
+                    ascii = ascii-mes;
+                    ascii = Math.sqrt(2);
+                    result+=String.fromCharCode(ascii);
+                }
+                document.getElementById("enc").innerHTML = result;
             }
         </script>
     </body>
