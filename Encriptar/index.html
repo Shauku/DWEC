@@ -40,9 +40,10 @@
                 var text = document.getElementById("denc").value;
                 var array=text.toString().split("#");
                 for (var x in array[0]){
+                    alert(x);
                     var ascii = x.charCodeAt(0);
                     ascii = ascii-mes;
-                    ascii = Math.sqrt(2);
+                    ascii = Math.sqrt(ascii);
                     result+=String.fromCharCode(ascii);
                 }
                 document.getElementById("desenc").innerHTML = result;
