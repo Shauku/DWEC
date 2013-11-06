@@ -1,7 +1,3 @@
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,17 +6,38 @@ and open the template in the editor.
     </head>
     <body>
         <div>
-            <input id="ienc"/>
-            <button id="encr">Encriptar!</button>
+            <h1>Encriptador</h1>
+            <input id="ienc" type="text" />
+            <button id="encr" onclick="javascript:encriptar();">Encriptar!</button>
             <p id="enc"></p>
             <br/>
             <br/>
-            <input id="denc"/>
-            <button id="desn">Desencriptar!</button>
+            <input id="denc" type="text"/>
+            <button id="desn" onclick="javascript:desencriptar();">Desencriptar!</button>
             <p id="desenc"></p>
         </div>
-        <script>
+        <script> 
+            var mes = Date.now().getMonth();
             
+            function encriptar(){
+                var result = "";
+                var text = document.getElementById("ienc").value;
+                for (var i=0;i<text.length;i++){
+                    var c = text.toString().charAt(i);
+                    var ascii = c.charCodeAt(0);
+                    ascii = Math.pow(ascii, 3);
+                    ascii = ascii+mes;
+                    result+= String.fromCharCode(ascii);
+                }
+                result+="#";
+                result+=mes;
+                document.getElementById(enc).innerHTML = result;
+            }
+            
+            function desenecriptar() {
+                var text = document.getElementById("denc").value;
+                
+            }
         </script>
     </body>
 </html>
