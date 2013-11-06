@@ -36,7 +36,7 @@
             }
             
             function desencriptar() {
-                var result = "";
+                var result = "a";
                 var text = document.getElementById("denc").value;
                 var array=text.toString().split("#");
                 for (var x in array[0]){
@@ -45,7 +45,7 @@
                     ascii = Math.sqrt(2);
                     result+=String.fromCharCode(ascii);
                 }
-                document.getElementById("enc").innerHTML = result;
+                document.getElementById("desenc").innerHTML = result;
             }
         </script>
     </body>
