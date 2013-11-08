@@ -3,51 +3,48 @@
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link type="style/css" rel="stylesheet" href="dist/css/bootstrap.min.css"/>
+        <link type="style/css" rel="stylesheet" href="style.css">
+        <script type="text/javascript" src="dist/js/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="dist/js/bootstrap.js"></script>
     </head>
     <body>
-        <div>
-            <h1>Encriptador</h1>
-            <input id="ienc" type="text" />
-            <button id="encr" onclick="javascript:encriptar();">Encriptar!</button>
-            <p id="enc"></p>
-            <br/>
-            <br/>
-            <input id="denc"/>
-            <button id="desn" onclick="javascript:desencriptar();">Desencriptar!</button>
-            <p id="desenc"></p>
+        <div class="container">
+            <header>
+                <h1>Criptodroid</h1>
+            </header>
+            <hr/>
+            <section>
+                <input id="ienc" type="text" class="form-control" />
+                <button id="encr" class="btn btn-primary btn-lg" onclick="javascript:encriptar();" data-toggle="modal" data-target="#myModal">Encriptar!</button>
+                
+                <br/>
+                <br/>
+                <input id="denc" class="form-control"/>
+                <button id="desn" class="btn btn-primary btn-lg" onclick="javascript:desencriptar();" data-toggle="modal" data-target="#myModal">Desencriptar!</button>
+                
+            </section>
         </div>
-        <script> 
-            var data = new Date;
-            var mes = data.getMonth();
-            
-            function encriptar(){
-                var result = "";
-                var text = document.getElementById("ienc").value;
-                for (var i=0;i<text.length;i++){
-                    var c = text.toString().charAt(i);
-                    var ascii = c.charCodeAt(0);
-                    ascii = Math.pow(ascii, 2);
-                    ascii = ascii+mes;
-                    result+= String.fromCharCode(ascii);
-                }
-                result+="#";
-                result+=mes;
-                document.getElementById("enc").innerHTML = result;
-            }
-            
-            function desencriptar() {
-                var result = "a";
-                var text = document.getElementById("denc").value;
-                var array=text.toString().split("#");
-                for (var x in array[0]){
-                    alert(x);
-                    var ascii = x.charCodeAt(0);
-                    ascii = ascii-mes;
-                    ascii = Math.sqrt(ascii);
-                    result+=String.fromCharCode(ascii);
-                }
-                document.getElementById("desenc").innerHTML = result;
-            }
-        </script>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:clearall();">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Resultado</h4>
+                    </div>
+                    <div id="error" class="modal-body has-error">
+                        <label id="errorlbl" class="control-label">La clau no es valida</label>
+                    </div>
+                    <div id="success" class="modal-body">
+                        <input id="res" class="form-control"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:clearall();">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <script type="text/javascript" src="encriptar.js"></script>
     </body>
 </html>

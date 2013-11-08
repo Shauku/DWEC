@@ -1,0 +1,17 @@
+root { 
+    display: block;
+}
+
+h1 {
+    text-align: center;
+}
+
+section{
+    text-align:center;
+}
+button {
+    margin-top: 10px;
+}
+p {
+    margin-top: 10px;
+}
