@@ -1,0 +1,33 @@
+h1 {
+    text-align: center;
+}
+
+#game{
+    display:none;
+}
+
+.etapa {
+    float:left;
+    width: 45%;
+    margin: 2%;
+}
+
+img {
+    width: 100%;
+}
+
+.infoeq {
+    float: left;
+    width: 40%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+}
+
+h3 {
+    text-align: center;
+}
+
+#buttons {
+    text-align: center;
+}
