@@ -14,11 +14,11 @@
             <hr/>
             <div id="datos" class="center-block">
                 <div id="eq1" class="infoeq">
-                    <h3>Datos Equipo 1:</h3>
+                    <h3>Datos Equipo Red:</h3>
                     <hr/>
                     <label for="name1">Nom equip:</label>
                     <input id="name1" class="form-control" type="text" placeholder="Nom equip"/>
-                    <label for="cicl1">Velocidad Ciclista 1:</label>
+                    <label for="cicl1">Velocidad Jefe de filas:</label>
                     <input id="cicl1" class="form-control" type="text" placeholder="Velocidad"/>
                     <label for="cicl21">Velocidad Ciclista 2:</label>
                     <input id="cicl21" class="form-control" type="text" placeholder="Velocidad"/>
@@ -26,40 +26,46 @@
                     <input id="cicl31" class="form-control" type="text" placeholder="Velocidad"/>
                 </div>
                 <div id="eq2" class="infoeq">
-                    <h3>Datos Equipo 2:</h3>
+                    <h3>Datos Equipo Blue:</h3>
                     <hr/>
                     <label for="name2">Nom equip:</label>
                     <input id="name2" class="form-control" type="text" placeholder="Nom equip"/>
-                    <label for="cicl2">Velocidad Ciclista 1:</label>
+                    <label for="cicl2">Velocidad Jefe de filas:</label>
                     <input id="cicl2" class="form-control" type="text" placeholder="Velocidad"/>
                     <label for="cicl22">Velocidad Ciclista 2:</label>
                     <input id="cicl22" class="form-control" type="text" placeholder="Velocidad"/>
                     <label for="cicl32">Velocidad Ciclista 3:</label>
                     <input id="cicl32" class="form-control" type="text" placeholder="Velocidad"/>
                 </div>
-                <div id="buttons">
-                    <button id="init" class="btn btn-primary btn-lg" onclick="javascript:initgame();">GO!</button>
+                <div class="buttons">
+                    <button id="init" class="btn btn-primary btn-lg" onclick="javascript:newgame();">GO!</button>
                 </div>
             </div>
-            <div id="game" class="center-block">
-                <section class="etapa">
-                    <header><h3>Equip 1</h3></header>
-                    <article>
-                        <div id="progeq1">
-                            <img alt="etapa" src="dist/img/etapa.png"/>
-                        </div>
-                    </article>
-                </section>
-                <section class="etapa">
-                    <header><h3>Equip 2</h3></header>
-                    <article>
-                        <div id="progeq2">
-                            <img alt="etapa" src="dist/img/etapa.png"/>
-                        </div>
-                    </article>
-                </section>
+            <div id="game" class="center-block container">
+                <div class="row carrer">
+                    <img id="red1" src="dist/img/bikeRed.png"/>
+                </div>
+                <div class="row carrer">
+                    <img id="red2" src="dist/img/bikeRed.png"/>
+                </div>
+                <div class="row carrer">
+                    <img id="red3" src="dist/img/bikeRed.png"/>
+                </div>
+                <div class="row carrer">
+                    <img id="blue1" src="dist/img/bikeBlue.png"/>
+                </div>
+                <div class="row carrer">
+                    <img id="blue2" src="dist/img/bikeBlue.png"/>
+                </div>
+                <div class="row carrer">
+                    <img id="blue3" src="dist/img/bikeBlue.png"/>
+                </div>
+                <div class="buttons">
+                    <button id="next" class="btn btn-primary btn-lg" onclick="javascript:nextturn();">Passar torn</button>
+                </div>
             </div>
         </div>
         <script type="text/javascript" src="dist/js/game.js"></script>
+        <script type="text/javascript" src="dist/js/controller.js"></script>
     </body>
 </html>
