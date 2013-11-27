@@ -162,6 +162,7 @@ function calcMove(max, i){
     var res = Math.random(0, max);
     var percentatge = (res/100)*total;
     move(percentatge, i);
+    console.log(i+"  "+percentatge+","+res);
 }
 
 //Starts a new game
