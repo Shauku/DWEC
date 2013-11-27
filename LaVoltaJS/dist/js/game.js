@@ -2,6 +2,7 @@ var db;
 var game_data;
 var max_vels_red;
 var max_vels_blue;
+var deferred = new $.Deferred();
 var type;
 $( document ).ready(function() {
     //prefixes of implementation that we want to test
@@ -26,7 +27,7 @@ $( document ).ready(function() {
         db = request.result;
         console.log("success: "+ db);
         type=true;
-        retrieveData();
+        retrieveData(isStarted);
     };
     
     //Store creation + insert
@@ -57,6 +58,40 @@ $( document ).ready(function() {
     }
 });
 
+//Checks if theres a game started
+function isStarted(){
+	console.log("STARTDAMNGAME");
+	if ((game_data["vr1"]==0)&&(game_data["vr2"]==0)&&(game_data["vr3"]==0)&&(game_data["vb1"]==0)&&(game_data["vb2"]==0)&&(game_data["vb3"]==0))
+	{
+		//The game isnt started
+		$("#game").css("display", "none");
+        $("#datos").css("display", "block");
+	} else
+	{
+		//The game is started
+		$("#game").css("display", "block");
+        $("#datos").css("display", "none");
+		
+		for (var i = 0; i<6; i++)
+		{
+			if (i<3){
+				var id="#red"+(i+1);
+				$(id).animate({
+					"left": "+="+game_data["vr"+(i+1)]
+				}, "fast");
+			}
+			else{
+				var id="#blue"+(i+1);
+				$(id).animate({
+					"left": "+="+game_data["vb"+(i-2)]
+				}, "fast");
+			}
+		}
+	}
+	
+}
+
+//Starts a game
 function newgame() {
     
     var red = new Array();
@@ -92,50 +127,86 @@ function newgame() {
         $("#game").css("display", "block");
         $("#datos").css("display", "none");
     } else
-{
+	{
         alert("Valors de velocitat incorrectes");
     }
 }
 
+//Starts a turn
 function nextturn() {
     for (var i=0; i<6; i++)
     {
-        if (i<=3){
-            calcMove(max_vels_red[i], i+1);
+        if (i<=2){
+            calcMove(max_vels_red["v"+(i+1)], i+1);
         } else {
-            calcMove(max_vels_blue[i-3], i+1);
+            calcMove(max_vels_blue["v"+(i-2)], i+1);
         }
     }
     saveall();
+	isOver();
 }
 
+//Save the game
 function saveall(){
-    
+	var posis = [
+        {
+            id: "1",
+            vr1: $("#red1").css("left"),
+            vr2: $("#red2").css("left"),
+            vr3: $("#red3").css("left"),
+            vb1: $("#blue4").css("left"),
+            vb2: $("#blue5").css("left"),
+            vb3: $("#blue6").css("left")
+        }
+        ];
+    clearStoreResu(db);
+    var transaction = db.transaction(["resu"], "readwrite");
+    var objectStore = transaction.objectStore("resu");
+    for (var i in posis) {
+        objectStore.put(posis[i]);       
+    }
 }
 
-function retrieveData(){
+//clear the Store (RESU) for adding new items
+function clearStoreResu(db){
+    console.log(db);
     var transaction = db.transaction(["resu"], "readwrite");
     var store = transaction.objectStore("resu");
-    var request = store.get("1");
-    console.log(db);
-    request.onerror = function(e){console.log("errorposis");};
-    request.onsucces = function(e){
-        console.log("posis");
-        game_data = [{
-            vr1: e.request.result.vr1,
-            vr2: e.request.result.vr2,
-            vr3: e.request.result.vr3,
-            vb1: e.request.result.vb1,
-            vb2: e.request.result.vb2,
-            vb3: e.request.result.vb3
-        }];
-    };
+    var request = store.delete("1");
+    request.onsucces = function(event){};
+}
+
+//Retrieves All the data needed for the game
+function retrieveData(callback){
+	
+    var transaction = db.transaction(["resu"], "readwrite");
+    var store = transaction.objectStore("resu");
+    store.openCursor().onsuccess = function(event) {
+		var cursor = event.target.result;
+        if (cursor) {
+			if(cursor.value.id=="1"){
+				game_data = {
+					vr1: cursor.value.vr1,
+					vr2: cursor.value.vr2,
+					vr3: cursor.value.vr3,
+					vb1: cursor.value.vb1,
+					vb2: cursor.value.vb2,
+					vb3: cursor.value.vb3
+				};
+				console.log("game_data = "+game_data["vr1"]+" cursor value = "+cursor.value.vr1);
+				callback();
+			}
+            cursor.continue();
+        }
+        else {
+            console.log("No more entries");
+        }
+	};
     
     var transaction2 = db.transaction(["equips"], "readwrite");
     var store2 = transaction2.objectStore("equips");
     store2.openCursor().onsuccess = function(event) {
         var cursor = event.target.result;
-        console.log("cursoropened!");
         if (cursor) {
             if(cursor.value.id=="1"){
                 max_vels_red = {
@@ -151,18 +222,18 @@ function retrieveData(){
             cursor.continue();
         }
         else {
-            console.log("noentries");
+            console.log("No more entries");
         }
     };
     
 }
 
+//Calcs the next move
 function calcMove(max, i){
     var total = $("#game").width();
-    var res = Math.random(0, max);
-    var percentatge = (res/100)*total;
+    var res = Math.floor(Math.random() * parseInt(max));
+    var percentatge = ((res*100)/total)/5;
     move(percentatge, i);
-    console.log(i+"  "+percentatge+","+res);
 }
 
 //Starts a new game
@@ -193,7 +264,6 @@ function initgame (r, b) {
 
 //clear the Store for adding new items
 function clearStore(db){
-    console.log(db);
     var transaction = db.transaction(["equips"], "readwrite");
     var store = transaction.objectStore("equips");
     var request = store.delete("1");
@@ -204,9 +274,8 @@ function clearStore(db){
 }
 
 
-//insert
+//insert the teams
 function insert(teamData){
-    console.log(db);
     if (type){
         clearStore(db);
     }
@@ -215,8 +284,10 @@ function insert(teamData){
     for (var i in teamData) {
         objectStore.put(teamData[i]);       
     }
+	retrieveData();
 }
 
+//Makes the img move
 function move(perc, i) {
     
     if (i<=3){
@@ -231,4 +302,26 @@ function move(perc, i) {
             "left": "+="+perc+"%"
         }, "fast");
     }
+}
+
+//Checks if someone has win
+function isOver() {
+	var meta = parseInt($(".carrer").css("width"));
+	if ((parseInt($("#red1").css("left"))>=meta)&&(parseInt($("#red2").css("left"))>=meta)&&(parseInt($("#red3").css("left"))>=meta))
+	{
+		alert("L'equip vermell ha guanyat");
+		hardreset();
+	} else if ((parseInt($("#blue4").css("left"))>=meta)&&(parseInt($("#blue5").css("left"))>=meta)&&(parseInt($("#blue6").css("left"))>=meta)) {
+		alert("L'equip blau ha guanyat");
+		hardreset();
+	}
+	
+}
+
+//ResetALLTheThings!!!!!!!!!111oneone!
+function hardreset(){
+	$("#game").css("display", "block");
+    $("#datos").css("display", "none");
+	clearStore(db);
+	clearStoreResu(db);
 }
