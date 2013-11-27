@@ -13,7 +13,7 @@ $( document ).ready(function() {
     }
     
     db=null;
-    var request = window.indexedDB.open("LaVolta", 1);
+    var request = window.indexedDB.open("LaVolta2", 1);
  
     request.onerror = function(event) {
         console.log("error: ");
@@ -31,6 +31,33 @@ $( document ).ready(function() {
         var objectStore = db.createObjectStore("equips", {
             keyPath: "id"
         });
+        var objectStore_res = db.createObjectStore("resu", {
+            keyPath: "id"
+        });
+        var data = [
+        {
+            id: "1",
+            vr1: 0,
+            vr2: 0,
+            vr3: 0,
+            vb1: 0,
+            vb2: 0,
+            vb3: 0
+        },
+        {
+            id:"2",
+            vr1: 0,
+            vr2: 0,
+            vr3: 0,
+            vb1: 0,
+            vb2: 0,
+            vb3: 0
+        }
+        ];
+    
+        for (var i in data) {
+            objectStore_res.put(data[i]);       
+        }
         type=false;
     }
 });
@@ -77,18 +104,40 @@ function newgame() {
 
 function nextturn() {
     retrieveData();
-    calcMove();
-    next();
+    saveall();
 }
 
-function retrieveData(){
+function saveall(){
     
 }
 
-function calcMove(max){
+function retrieveData(){
+    var transaction = db.transaction(["resu"], "readwrite");
+    var store = transaction.objectStore("resu");
+    var request = store.get("1");
+    console.log(db);
+    request.onerror = function(e){console.log("asdfadsfa");};
+    request.onsucces = function(e){
+        console.log("ADSF");
+        var data = [{
+            vr1: e.request.result.vr1,
+            vr2: e.request.result.vr2,
+            vr3: e.request.result.vr3,
+            vb1: e.request.result.vb1,
+            vb2: e.request.result.vb2,
+            vb3: e.request.result.vb3
+        }];
+        for (var i=0; i<data.length; i+2){
+            calcMove(data[i], i);
+        }
+    };
+}
+
+function calcMove(max, i){
     var total = $("#game").width();
     var res = Math.random(0, max);
     var percentatge = (res/100)*total;
+    move(percentatge, i);
 }
 
 //Starts a new game
@@ -121,7 +170,7 @@ function initgame (r, b) {
 function clearStore(db){
     console.log(db);
     var transaction = db.transaction(["equips"], "readwrite");
-    var store = transaction.objectStore("equips")
+    var store = transaction.objectStore("equips");
     var request = store.delete("1");
     request.onsucces = function(event){};
     var store2 = transaction.objectStore("equips");
@@ -143,24 +192,18 @@ function insert(teamData){
     }
 }
 
-function next() {
+function move(perc, i) {
     
-    $("#red1").animate({
-        "left": "+=200px"
-    }, "fast");
-    $("#red2").animate({
-        "left": "+=200px"
-    }, "fast");
-    $("#red3").animate({
-        "left": "+=200px"
-    }, "fast");
-    $("#blue1").animate({
-        "left": "+=200px"
-    }, "fast");
-    $("#blue2").animate({
-        "left": "+=200px"
-    }, "fast");
-    $("#blue3").animate({
-        "left": "+=200px"
-    }, "fast");
+    if (i<=3){
+        var id="#red"+i;
+        $(id).animate({
+            "left": "+="+perc+"%"
+        }, "fast");
+    }
+    else{
+        var id="#blue"+i;
+        $(id).animate({
+            "left": "+="+perc+"%"
+        }, "fast");
+    }
 }
