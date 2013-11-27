@@ -1,4 +1,7 @@
 var db;
+var game_data;
+var max_vels_red;
+var max_vels_blue;
 var type;
 $( document ).ready(function() {
     //prefixes of implementation that we want to test
@@ -23,6 +26,7 @@ $( document ).ready(function() {
         db = request.result;
         console.log("success: "+ db);
         type=true;
+        retrieveData();
     };
     
     //Store creation + insert
@@ -37,15 +41,6 @@ $( document ).ready(function() {
         var data = [
         {
             id: "1",
-            vr1: 0,
-            vr2: 0,
-            vr3: 0,
-            vb1: 0,
-            vb2: 0,
-            vb3: 0
-        },
-        {
-            id:"2",
             vr1: 0,
             vr2: 0,
             vr3: 0,
@@ -103,7 +98,14 @@ function newgame() {
 }
 
 function nextturn() {
-    retrieveData();
+    for (var i=0; i<6; i++)
+    {
+        if (i<=3){
+            calcMove(max_vels_red[i], i+1);
+        } else {
+            calcMove(max_vels_blue[i-3], i+1);
+        }
+    }
     saveall();
 }
 
@@ -116,10 +118,10 @@ function retrieveData(){
     var store = transaction.objectStore("resu");
     var request = store.get("1");
     console.log(db);
-    request.onerror = function(e){console.log("asdfadsfa");};
+    request.onerror = function(e){console.log("errorposis");};
     request.onsucces = function(e){
-        console.log("ADSF");
-        var data = [{
+        console.log("posis");
+        game_data = [{
             vr1: e.request.result.vr1,
             vr2: e.request.result.vr2,
             vr3: e.request.result.vr3,
@@ -127,10 +129,32 @@ function retrieveData(){
             vb2: e.request.result.vb2,
             vb3: e.request.result.vb3
         }];
-        for (var i=0; i<data.length; i+2){
-            calcMove(data[i], i);
+    };
+    
+    var transaction2 = db.transaction(["equips"], "readwrite");
+    var store2 = transaction2.objectStore("equips");
+    store2.openCursor().onsuccess = function(event) {
+        var cursor = event.target.result;
+        console.log("cursoropened!");
+        if (cursor) {
+            if(cursor.value.id=="1"){
+                max_vels_red = {
+                    v1: cursor.value.v1,
+                    v2: cursor.value.v2,
+                    v3: cursor.value.v3};
+            }else if (cursor.value.id=="2") {
+                max_vels_blue = {
+                    v1: cursor.value.v1,
+                    v2: cursor.value.v2,
+                    v3: cursor.value.v3};
+            } 
+            cursor.continue();
+        }
+        else {
+            console.log("noentries");
         }
     };
+    
 }
 
 function calcMove(max, i){
