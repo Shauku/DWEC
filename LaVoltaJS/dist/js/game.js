@@ -27,7 +27,7 @@ $( document ).ready(function() {
         db = request.result;
         console.log("success: "+ db);
         type=true;
-        retrieveData(isStarted);
+        retrieveData(isStarted, true);
     };
     
     //Store creation + insert
@@ -60,35 +60,48 @@ $( document ).ready(function() {
 
 //Checks if theres a game started
 function isStarted(){
-	console.log("STARTDAMNGAME");
-	if ((game_data["vr1"]==0)&&(game_data["vr2"]==0)&&(game_data["vr3"]==0)&&(game_data["vb1"]==0)&&(game_data["vb2"]==0)&&(game_data["vb3"]==0))
-	{
-		//The game isnt started
-		$("#game").css("display", "none");
+    if ((game_data["vr1"]==0)&&(game_data["vr2"]==0)&&(game_data["vr3"]==0)&&(game_data["vb1"]==0)&&(game_data["vb2"]==0)&&(game_data["vb3"]==0))
+    {
+        //The game isnt started
+        $("#game").css("display", "none");
         $("#datos").css("display", "block");
-	} else
-	{
-		//The game is started
-		$("#game").css("display", "block");
+    } else
+{
+        //The game is started
+        $("#game").css("display", "block");
         $("#datos").css("display", "none");
 		
-		for (var i = 0; i<6; i++)
-		{
-			if (i<3){
-				var id="#red"+(i+1);
-				$(id).animate({
-					"left": "+="+game_data["vr"+(i+1)]
-				}, "fast");
-			}
-			else{
-				var id="#blue"+(i+1);
-				$(id).animate({
-					"left": "+="+game_data["vb"+(i-2)]
-				}, "fast");
-			}
-		}
-	}
-	
+        for (var i = 0; i<6; i++)
+        {
+            if (i<3){
+                var id="#red"+(i+1);
+                $(id).animate({
+                    "left": "+="+game_data["vr"+(i+1)]
+                }, "fast");
+            }
+            else{
+                var id="#blue"+(i+1);
+                $(id).animate({
+                    "left": "+="+game_data["vb"+(i-2)]
+                }, "fast");
+            }
+        }
+    }
+}
+
+//Puts the img to width 0
+function putToCero() {
+    for (var i = 0; i<6; i++)
+    {
+        if (i<3){
+            var id="#red"+(i+1);
+            $(id).css("left", "0px");
+        }
+        else{
+            var id="#blue"+(i+1);
+            $(id).css("left", "0px");
+        }
+    }
 }
 
 //Starts a game
@@ -104,6 +117,10 @@ function newgame() {
     var vb1 = parseInt($("#cicl2").val());
     var vb2 = parseInt($("#cicl22").val());
     var vb3 = parseInt($("#cicl32").val());
+    
+    clearStoreResu(db);
+    
+    putToCero();
     
     if((vr1+vr2+vr3)<=1000){
         red[0] = $("#name1").val();
@@ -127,7 +144,7 @@ function newgame() {
         $("#game").css("display", "block");
         $("#datos").css("display", "none");
     } else
-	{
+{
         alert("Valors de velocitat incorrectes");
     }
 }
@@ -143,22 +160,22 @@ function nextturn() {
         }
     }
     saveall();
-	isOver();
+    isOver();
 }
 
 //Save the game
 function saveall(){
-	var posis = [
-        {
-            id: "1",
-            vr1: $("#red1").css("left"),
-            vr2: $("#red2").css("left"),
-            vr3: $("#red3").css("left"),
-            vb1: $("#blue4").css("left"),
-            vb2: $("#blue5").css("left"),
-            vb3: $("#blue6").css("left")
-        }
-        ];
+    var posis = [
+    {
+        id: "1",
+        vr1: $("#red1").css("left"),
+        vr2: $("#red2").css("left"),
+        vr3: $("#red3").css("left"),
+        vb1: $("#blue4").css("left"),
+        vb2: $("#blue5").css("left"),
+        vb3: $("#blue6").css("left")
+    }
+    ];
     clearStoreResu(db);
     var transaction = db.transaction(["resu"], "readwrite");
     var objectStore = transaction.objectStore("resu");
@@ -169,39 +186,54 @@ function saveall(){
 
 //clear the Store (RESU) for adding new items
 function clearStoreResu(db){
-    console.log(db);
     var transaction = db.transaction(["resu"], "readwrite");
     var store = transaction.objectStore("resu");
     var request = store.delete("1");
     request.onsucces = function(event){};
+    var data = [
+    {
+        id: "1",
+        vr1: 0,
+        vr2: 0,
+        vr3: 0,
+        vb1: 0,
+        vb2: 0,
+        vb3: 0
+    }
+    ];
+    
+    for (var i in data) {
+        store.put(data[i]);       
+    }
 }
 
 //Retrieves All the data needed for the game
-function retrieveData(callback){
+function retrieveData(callback, option){
 	
     var transaction = db.transaction(["resu"], "readwrite");
     var store = transaction.objectStore("resu");
     store.openCursor().onsuccess = function(event) {
-		var cursor = event.target.result;
+        var cursor = event.target.result;
         if (cursor) {
-			if(cursor.value.id=="1"){
-				game_data = {
-					vr1: cursor.value.vr1,
-					vr2: cursor.value.vr2,
-					vr3: cursor.value.vr3,
-					vb1: cursor.value.vb1,
-					vb2: cursor.value.vb2,
-					vb3: cursor.value.vb3
-				};
-				console.log("game_data = "+game_data["vr1"]+" cursor value = "+cursor.value.vr1);
-				callback();
-			}
+            if(cursor.value.id=="1"){
+                game_data = {
+                    vr1: cursor.value.vr1,
+                    vr2: cursor.value.vr2,
+                    vr3: cursor.value.vr3,
+                    vb1: cursor.value.vb1,
+                    vb2: cursor.value.vb2,
+                    vb3: cursor.value.vb3
+                };
+                if (option){
+                    callback();
+                }
+            }
             cursor.continue();
         }
         else {
             console.log("No more entries");
         }
-	};
+    };
     
     var transaction2 = db.transaction(["equips"], "readwrite");
     var store2 = transaction2.objectStore("equips");
@@ -212,12 +244,14 @@ function retrieveData(callback){
                 max_vels_red = {
                     v1: cursor.value.v1,
                     v2: cursor.value.v2,
-                    v3: cursor.value.v3};
+                    v3: cursor.value.v3
+                };
             }else if (cursor.value.id=="2") {
                 max_vels_blue = {
                     v1: cursor.value.v1,
                     v2: cursor.value.v2,
-                    v3: cursor.value.v3};
+                    v3: cursor.value.v3
+                };
             } 
             cursor.continue();
         }
@@ -232,7 +266,7 @@ function retrieveData(callback){
 function calcMove(max, i){
     var total = $("#game").width();
     var res = Math.floor(Math.random() * parseInt(max));
-    var percentatge = ((res*100)/total)/5;
+    var percentatge = ((res*100)/total)/10;
     move(percentatge, i);
 }
 
@@ -284,44 +318,56 @@ function insert(teamData){
     for (var i in teamData) {
         objectStore.put(teamData[i]);       
     }
-	retrieveData();
+    retrieveData(null, false);
 }
 
 //Makes the img move
 function move(perc, i) {
-    
+    var meta = parseInt($(".carrer").css("width"));
     if (i<=3){
         var id="#red"+i;
-        $(id).animate({
-            "left": "+="+perc+"%"
-        }, "fast");
+        if (!(parseInt($(id).css("left"))+(parseInt($(id).css("width")))>=meta)) {
+            $(id).animate({
+                "left": "+="+perc+"%"
+            }, "fast");
+        }
+        if((parseInt($(id).css("left"))+(parseInt($(id).css("width")))>=meta)){
+            $(id).css("left", (meta-(parseInt($(id).css("width"))))+"px");
+        }
     }
     else{
         var id="#blue"+i;
-        $(id).animate({
-            "left": "+="+perc+"%"
-        }, "fast");
+        if (!(parseInt($(id).css("left"))+(parseInt($(id).css("width")))>=meta)){
+            $(id).animate({
+                "left": "+="+perc+"%"
+            }, "fast");
+        }
+        if((parseInt($(id).css("left"))+(parseInt($(id).css("width")))>=meta)){
+            $(id).css("left", (meta-(parseInt($(id).css("width"))))+"px");
+        }
     }
+    
 }
 
 //Checks if someone has win
 function isOver() {
-	var meta = parseInt($(".carrer").css("width"));
-	if ((parseInt($("#red1").css("left"))>=meta)&&(parseInt($("#red2").css("left"))>=meta)&&(parseInt($("#red3").css("left"))>=meta))
-	{
-		alert("L'equip vermell ha guanyat");
-		hardreset();
-	} else if ((parseInt($("#blue4").css("left"))>=meta)&&(parseInt($("#blue5").css("left"))>=meta)&&(parseInt($("#blue6").css("left"))>=meta)) {
-		alert("L'equip blau ha guanyat");
-		hardreset();
-	}
+    var meta = parseInt($(".carrer").css("width"));
+    var width = parseInt($("#red1").css("width"));
+    if ((parseInt($("#red1").css("left"))+width>=meta)&&(parseInt($("#red2").css("left"))+width>=meta)&&(parseInt($("#red3").css("left"))+width>=meta))
+    {
+        alert("L'equip vermell ha guanyat");
+        hardreset();
+    } else if ((parseInt($("#blue4").css("left"))+width>=meta)&&(parseInt($("#blue5").css("left"))+width>=meta)&&(parseInt($("#blue6").css("left"))+width>=meta)) {
+        alert("L'equip blau ha guanyat");
+        hardreset();
+    }
 	
 }
 
 //ResetALLTheThings!!!!!!!!!111oneone!
 function hardreset(){
-	$("#game").css("display", "block");
-    $("#datos").css("display", "none");
-	clearStore(db);
-	clearStoreResu(db);
+    $("#game").css("display", "none");
+    $("#datos").css("display", "block");
+    clearStore(db);
+    clearStoreResu(db);
 }
