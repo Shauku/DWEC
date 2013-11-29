@@ -1,0 +1,42 @@
+h1 {
+    text-align: center;
+}
+
+#game{
+    display:none;
+}
+
+.etapa {
+    float:left;
+    width: 45%;
+    margin: 2%;
+}
+
+.infoeq {
+    float: left;
+    width: 40%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+}
+
+h3 {
+    text-align: center;
+}
+
+.buttons {
+    text-align: center;
+    margin-top: 2%;
+}
+
+.carrer {
+    display:block;
+    margin-top: 1%;
+    margin-bottom:1%;
+    border-bottom: 2px solid #666;
+    border-right: 2px dashed #666;
+}
+
+img {
+    position: relative;
+}
