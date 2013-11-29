@@ -2,7 +2,6 @@ var db;
 var game_data;
 var max_vels_red;
 var max_vels_blue;
-var deferred = new $.Deferred();
 var type;
 $( document ).ready(function() {
     //prefixes of implementation that we want to test
