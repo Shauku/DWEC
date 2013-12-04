@@ -1,13 +1,51 @@
+html, body {
+	height: 100%;
+}
+
 #cabecera {
         background-color: #1d9d74;
         height: 80px;
-	width: 100%;
+        width: 100%;
         color:white;
         border-bottom: 1px solid #177759;
 }
 
+#left-content {
+	margin-top:20px;
+}
+
+#left-content > h4 {
+	margin-top 20px;
+}
+
+#right-content {
+	margin-top: 20px;
+	border-left: 2px solid #1d9d74;
+}
+
+#example {
+	
+}
+
 #login {
     padding: 10px;
+	margin-right:0px;
+}
+
+hr {
+	border-color: #177759;
+}
+
+#datosreg > div {
+	padding: 15px;
+}
+
+#datosreg > button, h2 {
+	margin-left: 15px;
+}
+
+#terminos {
+	margin-left: 15px;
 }
 
 .portada {
@@ -19,4 +57,41 @@ footer {
     color:white;
     text-align: center;
     border-top: 1px solid #177759;
+	position: relative;
+	margin-top: -30px; /* negative value of footer height */
+	height: 30px;
+	clear:both;
+	padding: 5px;
+}
+
+.reg {
+	width: 70%;
+	position: relative;
+	float: right;
+}
+
+#contenido {
+}
+
+* {
+	margin: 0;
+}
+
+.wrapper {
+	min-height: 100%;
+}
+
+.main {
+	overflow:auto;
+	padding-bottom: 30px;
+}  /* must be same height as the footer */
+
+
+/*Opera Fix*/
+body:before {/* thanks to Maleika (Kohoutec)*/
+content:"";
+height:100%;
+float:left;
+width:0;
+margin-top:-32767px;/* thank you Erik J - negate effect of float*/
 }

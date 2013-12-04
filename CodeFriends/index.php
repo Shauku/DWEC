@@ -5,38 +5,120 @@
         <?php include("./Plantillas/header.html"); ?>
     </head>
     <body>
-        <?php include("./Plantillas/cabecera.html"); ?>
-        <div class="contenido container">
+
+		<!-- HEADER -->
+        <?php
+			$isFirst=true;
+			include("./Plantillas/cabecera.php");
+		?>
+
+         <div class="contenido container">
             <div class="row">
-                <div class="col-md-6 portada">
-                    
+                <div id="left-content" class="col-md-6 portada">
+					<h4>Comenta, evalua y compara tu código con el de tus amigos!</h4>
+                    <div id="example">
+						<pre class="brush: js">
+//EXAMPLE CODE
+var max_vels_blue;
+var type;
+$( document ).ready(function() {
+    //prefixes of implementation that we want to test
+    window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+
+    //prefixes of window.IDB objects
+    window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+    window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange
+
+    if (!window.indexedDB) {
+        window.alert("Your browser doesn't support a stable version of IndexedDB.")
+    }
+
+    db=null;
+    var request = window.indexedDB.open("LaVolta2", 1);
+
+    request.onerror = function(event) {
+        console.log("error: ");
+    };
+
+    request.onsuccess = function(event) {
+        db = request.result;
+        console.log("success: "+ db);
+        type=true;
+        retrieveData(isStarted, true);
+    };
+
+    //Store creation + insert
+    request.onupgradeneeded = function(event) {
+        db = event.target.result;
+        var objectStore = db.createObjectStore("equips", {
+            keyPath: "id"
+        });
+        var objectStore_res = db.createObjectStore("resu", {
+            keyPath: "id"
+        });
+        var data = [
+        {
+            id: "1",
+            vr1: 0,
+            vr2: 0,
+            vr3: 0,
+            vb1: 0,
+            vb2: 0,
+            vb3: 0
+        }
+        ];
+
+        for (var i in data) {
+            objectStore_res.put(data[i]);
+        }
+        type=false;
+    }
+});
+						</pre>
+					</div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
+                <div id="right-content" class="col-md-6 portada">
+                    <div id="datosreg">
                         <h2>Registrate!</h2>
                         <hr/>
-                        <button id="btnregfacebook" class="btn btn-success">Entrar</button>
+                        <button id="btnregfacebook" class="btn btn-success">Registrarse con Facebook</button>
                         <br/>
+						<hr/>
                         <br/>
-                        <label for="Nombre:">Nombre:</label>
-                        <input type="text" id="name" class="form-control" placeholder="Nombre"/>
+                        <div class="form-group">
+                        <label for="name">Nombre:</label>
+                        <input type="text" id="name" class="form-control reg" placeholder="Nombre"/>
+                        </div>
                         <br/>
-                        <label for="Nombre:">Email:</label>
-                        <input type="email" id="email" class="form-control" placeholder="Email"/>
+                        <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" class="form-control reg" placeholder="Email"/>
+                        </div>
                         <br/>
-                        <label for="Nombre:">Contraseña:</label>
-                        <input type="password" id="password" class="form-control" placeholder="Constraseña"/>
+                        <div class="form-group">
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" class="form-control reg" placeholder="Constraseña"/>
+                        </div>
                         <br/>
-                        <label for="Nombre:">Repetir contraseña:</label>
-                        <input type="password" id="confpass" class="form-control" placeholder=""/>
+                        <div class="form-group">
+                        <label for="confpas">Repetir contraseña:</label>
+                        <input type="password" id="confpass" class="form-control reg" placeholder="Repetir contraseña"/>
+                        </div>
                         <br />
-                        <input type = "checkbox" id = "terminos" value = "Acepto los términos y condiciones" />
+                        <input type = "checkbox" id = "terminos" value = "" /> Acepto los términos y condiciones
+						<br/>
+						<br/>
+						<hr/>
+						<br/>
                         <button id="register" class="btn btn-success">Registrarse</button>
                     </div>
                 </div>
             </div>
         </div>
+
+		<!-- FOOTER -->
         <?php include("./Plantillas/footer.html"); ?>
+
     </body>
 </html>
 
