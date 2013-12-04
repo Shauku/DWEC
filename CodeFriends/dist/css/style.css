@@ -1,42 +1,22 @@
-h1 {
+#cabecera {
+        background-color: #1d9d74;
+        height: 80px;
+	width: 100%;
+        color:white;
+        border-bottom: 1px solid #177759;
+}
+
+#login {
+    padding: 10px;
+}
+
+.portada {
+    padding: 1%;
+}
+
+footer {
+    background-color: #1d9d74;
+    color:white;
     text-align: center;
-}
-
-#game{
-    display:none;
-}
-
-.etapa {
-    float:left;
-    width: 45%;
-    margin: 2%;
-}
-
-.infoeq {
-    float: left;
-    width: 40%;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 5%;
-}
-
-h3 {
-    text-align: center;
-}
-
-.buttons {
-    text-align: center;
-    margin-top: 2%;
-}
-
-.carrer {
-    display:block;
-    margin-top: 1%;
-    margin-bottom:1%;
-    border-bottom: 2px solid #666;
-    border-right: 2px dashed #666;
-}
-
-img {
-    position: relative;
+    border-top: 1px solid #177759;
 }
