@@ -95,7 +95,9 @@ $( document ).ready(function() {
                         <br/>
                         <hr/>
                         <br/>
-                        <button id="register" class="btn btn-success">Registrarse</button>
+                        <a href="principal.php">
+                            <button id="register" class="btn btn-success">Registrarse</button>
+                        </a>
                     </div>
                 </div>
             </div>
