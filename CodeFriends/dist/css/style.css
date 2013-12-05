@@ -1,55 +1,109 @@
+* {
+    margin: 0;
+}
+
 html, body {
-	height: 100%;
+    height: 100%;
 }
 
 #cabecera {
-        background-color: #1d9d74;
-        height: 80px;
-        width: 100%;
-        color:white;
-        border-bottom: 1px solid #177759;
+    background-color: #1d9d74;
+    height: 80px;
+    width: 100%;
+    color:white;
+    border-bottom: 1px solid #177759;
+}
+
+.comentari {
+    width: 100%;
+    text-align: right;
+}
+
+h5 {
+    margin: 0px;
+}
+
+#comments {
+    padding: 2%;
+}
+
+#comentari-user-icon > span {
+    font-size: 52px;
+}
+
+.contenido {
+    width: 80%;
 }
 
 #left-content {
-	margin-top:20px;
+    margin-top:20px;
+    padding-top: 20px;
+}
+
+#comments {
+    border: 1px solid #177759;
+    border-radius: 4px;
 }
 
 #left-content > h4 {
-	margin-top 20px;
+    margin-top: 30px;
 }
 
 #right-content {
-	margin-top: 20px;
-	border-left: 2px solid #1d9d74;
-}
-
-#example {
-	
+    margin-top: 20px;
+    border-left: 2px solid #1d9d74;
 }
 
 #login {
     padding: 10px;
-	margin-right:0px;
+    margin-right:0px;
+    float: right;
+}
+
+#stars {
+    font-size: 24px;
+}
+
+#example {
+    height: 10%;
 }
 
 hr {
-	border-color: #177759;
+    border-color: #177759;
 }
 
 #datosreg > div {
-	padding: 15px;
+    padding: 15px;
 }
 
 #datosreg > button, h2 {
-	margin-left: 15px;
+    margin-left: 15px;
 }
 
 #terminos {
-	margin-left: 15px;
+    margin-left: 15px;
 }
 
 .portada {
     padding: 1%;
+}
+
+.reg {
+    width: 70%;
+    position: relative;
+    float: right;
+}
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+  /* Negative indent footer by it's height */
+    margin: 0 auto -30px;
+}
+
+#push, footer {
+    height: 30px;
 }
 
 footer {
@@ -57,41 +111,34 @@ footer {
     color:white;
     text-align: center;
     border-top: 1px solid #177759;
-	position: relative;
-	margin-top: -30px; /* negative value of footer height */
-	height: 30px;
-	clear:both;
-	padding: 5px;
+    position: relative;
+    margin-top: -30px; /* negative value of footer height */
+    height: 30px;
+    clear:both;
+    padding: 5px;
 }
-
-.reg {
-	width: 70%;
-	position: relative;
-	float: right;
-}
-
-#contenido {
-}
-
-* {
-	margin: 0;
-}
-
-.wrapper {
-	min-height: 100%;
-}
-
-.main {
-	overflow:auto;
-	padding-bottom: 30px;
-}  /* must be same height as the footer */
-
 
 /*Opera Fix*/
 body:before {/* thanks to Maleika (Kohoutec)*/
-content:"";
-height:100%;
-float:left;
-width:0;
-margin-top:-32767px;/* thank you Erik J - negate effect of float*/
+    content:"";
+    height:100%;
+    float:left;
+    width:0;
+    margin-top:-32767px;/* thank you Erik J - negate effect of float*/
+}
+
+.btn-login {
+  color: #ffffff;
+  background-color: #1d9d74;
+  border-color: #ffffff;
+}
+
+.btn-login:hover,
+.btn-login:focus,
+.btn-login:active,
+.btn-login.active,
+.open .dropdown-toggle.btn-login {
+  color: #1d9d74;
+  background-color: #ffffff;
+  border-color: #1d9d74;
 }
