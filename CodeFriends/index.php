@@ -1,13 +1,14 @@
-<?php ?>
+<?php 
+$page = "index";
+?>
 <html>
     <head>
-        <?php include("./Plantillas/header.html"); ?>
+        <?php include("./Plantillas/header.php"); ?>
     </head>
     <body>
 
         <!-- HEADER -->
         <?php
-        $isFirst = true;
         include("./Plantillas/cabecera.php");
         ?>
 
@@ -16,53 +17,12 @@
                 <div id="left-content" class="col-md-6 portada">
                     <h4>Comenta, evalua y compara tu código con el de tus amigos!</h4>
                     <hr/>
-                    <div id="example">
-                        <pre id="codeexample" class="brush: js; ruler: true;">
-//EXAMPLE CODE
-var max_vels_blue;
-var type;
-$( document ).ready(function() {
-    //prefixes of implementation that we want to test
-    window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
-
-    //prefixes of window.IDB objects
-    window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
-    window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange
-
-    if (!window.indexedDB) {
-        window.alert("Your browser doesn't support a stable version of IndexedDB.")
-    }
-
-    db=null;
-    var request = window.indexedDB.open("LaVolta2", 1);
-
-    request.onerror = function(event) {
-        console.log("error: ");
-    };
-
-    request.onsuccess = function(event) {
-        db = request.result;
-        console.log("success: "+ db);
-        type=true;
-        retrieveData(isStarted, true);
-    };
-});
-                        </pre>
-                        <div class="row">
-                            <div id="stars" class="col-md-3">
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                            </div>
-                            <?php 
-                                $column="col-md-8";
-                                include("./Plantillas/comentari.php");
-                            ?>
-                            <div class="col-md-1"></div>
-                        </div>
-                    </div>
+                    <?php
+                        $commentType="out";
+                        include("./Plantillas/publicacion.php");
+                    ?>
                 </div>
-                <div id="right-content" class="col-md-6 portada">
+                <div id="right-content" class="col-md-6 portada right-sep">
                     <div id="datosreg">
                         <h2>Registrate!</h2>
                         <hr/>

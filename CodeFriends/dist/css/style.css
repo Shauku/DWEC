@@ -7,12 +7,82 @@ html, body {
     background-color: #E2FFF7;
 }
 
+h1 {
+    text-shadow: 3px 2px 0 #1d9d74,9px 8px 0 rgba(0,0,0,0.15);
+}
+
+li > a {
+    color: #1d9d74 !important;
+}
+
+.right-sep{
+    border-left: 2px solid #177759;
+}
+.left-sep{
+    border-right: 2px solid #177759;
+}
+
+#conected-user {
+    text-align: center;
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+
+.input-group > span {
+    position: static;
+}
+
+a, a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#nav {
+    margin-top: 1%;
+    position:relative;
+    top: 3px;
+    background-color: #ffffff;
+    color: #1d9d74;
+    border: 1px solid #177759;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+h2, h3, h4, h5, label {
+    color: #0B392A;
+}
+
+.comments-in {
+    
+}
+
+.stripe {
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.short {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 1.5em;
+}
+
+#name-user {
+    color: #ffffff;
+}
+
+#conected-user > div > span {
+    font-size: 60px;
+}
+
 #cabecera {
     background-color: #1d9d74;
     height: 80px;
     width: 100%;
     color:white;
     border-bottom: 1px solid #177759;
+    -webkit-box-shadow: 0 2px 2px -2px rgba(0, 0, 0, .52);
 }
 
 .comentari {
@@ -29,11 +99,21 @@ h5 {
 }
 
 #comentari-user-icon > span {
+    font-size: 36px;
+}
+
+.comentari {
+    font-size: 13px;
+}
+
+#comments > div > #comentari-user-icon > span {
     font-size: 52px;
 }
 
 .contenido {
     width: 80%;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
 #left-content {
@@ -52,7 +132,6 @@ h5 {
 
 #right-content {
     margin-top: 20px;
-    border-left: 2px solid #1d9d74;
 }
 
 #login {
@@ -73,12 +152,8 @@ hr {
     border-color: #177759;
 }
 
-#datosreg > div {
-    padding: 15px;
-}
-
-#datosreg > button, h2 {
-    margin-left: 15px;
+#datosreg {
+    padding-left: 15px;
 }
 
 #terminos {
@@ -117,6 +192,7 @@ footer {
     height: 30px;
     clear:both;
     padding: 5px;
+    -webkit-box-shadow: 0 2px 2px 2px rgba(0, 0, 0, .52);
 }
 
 /*Opera Fix*/

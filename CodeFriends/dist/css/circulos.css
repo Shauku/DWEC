@@ -1,0 +1,44 @@
+h2, h4 {
+    margin-left: 2%;
+}
+
+.other-c {
+    text-align: center;
+    margin: 0;
+}
+
+.other-c > h2 {
+    margin-left: 0;
+}
+
+#ranking {
+    text-align: center;
+}
+
+.circle-rank {
+    text-align: center;
+    padding: 25px;
+    
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+h4.stripe {
+    text-align: center;
+    line-height: 0.3em;
+    margin-bottom: 1.5em;
+}
+
+h4 > span {
+    background: #E2FFF7;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#circle-content {
+    padding-right: 30px;
+}
