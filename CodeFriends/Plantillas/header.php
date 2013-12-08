@@ -25,5 +25,21 @@
 ?>
 <link type="style/css" rel="stylesheet" href="./dist/css/subir.css"/>
     <?php } ?>
+<?php 
+    if ($page === "amigos"){
+?>
+<link type="style/css" rel="stylesheet" href="./dist/css/amigos.css"/>
+    <?php } ?>
+<?php 
+    if ($page === "retos"){
+?>
+<link type="style/css" rel="stylesheet" href="./dist/css/retos.css"/>
+    <?php } ?>
+<?php 
+    if ($page === "logros"){
+?>
+<link type="style/css" rel="stylesheet" href="./dist/css/logros.css"/>
+<link type="style/css" rel="stylesheet" href="./dist/css/logro.css"/>
+    <?php } ?>
 <script type="text/javascript" src="./dist/js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="./dist/js/bootstrap.js"></script>

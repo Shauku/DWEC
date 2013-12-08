@@ -27,12 +27,21 @@
                 <div class="col-md-7">
                     <nav id="nav" class="navbar navbar-default" role="navigation">
                         <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">Menu</a>
+                        </div>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li <?php if($page==="principal"){ ?>class="active"<?php } ?>><a href="principal.php">Inicio</a></li>
-                                <li <?php if($page==="subir"){ ?>class="active"<?php } ?>><a href="subir.php">Subir Código</a></li>
-                                <li <?php if($page==="amigos"){ ?>class="active"<?php } ?>><a href="amigos.php">Amigos</a></li>
-                                <li class="dropdown <?php if($page==="circulos"){ ?>active<?php } ?>">
+                                <li <?php if ($page === "principal") { ?>class="active"<?php } ?>><a href="principal.php">Inicio</a></li>
+                                <li <?php if ($page === "subir") { ?>class="active"<?php } ?>><a href="subir.php">Subir Código</a></li>
+                                <li <?php if ($page === "amigos") { ?>class="active"<?php } ?>><a href="amigos.php">Amigos</a></li>
+                                <li class="dropdown <?php if ($page === "circulos") { ?>active<?php } ?>">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Circulos <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="circulos.php">Circulo 1</a></li>
@@ -40,8 +49,8 @@
                                         <li><a href="circulos.php">Circulo 3</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="retos.php">Retos</a></li>
-                                <li><a href="logros.php">Logros</a></li>
+                                <li <?php if ($page === "retos") { ?>class="active"<?php } ?>><a href="retos.php">Retos</a></li>
+                                <li <?php if ($page === "logros") { ?>class="active"<?php } ?>><a href="logros.php">Logros</a></li>
                                 <li><a href="#">Configuracion</a></li>
                                 <li><a href="#">Ayuda</a></li>
                             </ul>
