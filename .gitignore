@@ -214,3 +214,11 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 /nbproject/private/
+/Encriptar/nbproject/private/
+!/Encriptar/dist/
+/LaVoltaJS/nbproject/private/
+!/LaVoltaJS/dist/
+/CodeFriends/nbproject/private/
+!/CodeFriends/dist/
+/BonNadal/nbproject/private/
+!/BonNadal/dist/
