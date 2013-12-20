@@ -1,0 +1,59 @@
+.circulo-min {
+    text-align: center;
+    width: 23%;
+    margin-right: 2%;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+th, td {
+    text-align: center;
+}
+
+.table {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.retos-table {
+    text-align: center;
+    padding: 10px;
+    height: auto;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+#retos {
+    height: 40%;
+}
+
+#rank > .row {
+    text-align: center;
+}
+
+.circulo-min-last {
+    margin:0;
+}
+
+.circulo-min-first {
+    margin-left: 1%;
+}
+
+h2 {
+    margin-left: 2%;
+}
+
+td > a {
+    color: #0B392A;
+}
+td > a:hover {
+    color:#0B392A;
+}

@@ -1,0 +1,48 @@
+.contenido{
+    padding-top:40px;
+    padding-bottom: 40px;
+}
+
+h2 {
+    margin-left: 2%;
+}
+
+#search-friends {
+    margin-top: 20px;
+    margin-bottom:0;
+}
+
+.fix {
+    margin-bottom: 30px;
+}
+
+#search-new-friends > .input-group {
+    margin: 0 auto;
+    margin-bottom: 15px;
+    margin-top: 20px;
+}
+
+#new-friends {
+    text-align: center;
+}
+
+#new-friends > thead > tr > th {
+    text-align: center;
+}
+
+#agregar, #perfil {
+    padding-top: 10%;
+    font-size: 16px !important;
+}
+
+#new-friends > tbody > tr > td >span {
+    font-size: 32px;
+}
+
+.icon-amigo > span {
+    font-size: 48px !important;
+}
+
+.common-friends {
+    font-size: 12px !important;
+}
