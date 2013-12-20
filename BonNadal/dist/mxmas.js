@@ -10,21 +10,58 @@ var stage = new Kinetic.Stage({
 });
 newCopo();
 setInterval (newCopo, 1500);
-startText ();
+startNoel ();
+startTooltip ();
 
-function startText () {
+function startTooltip (){
+    var layerTool = new Kinetic.Layer();
+    var tooltip = new Kinetic.Label({
+        x: 750,
+        y: 85,
+        opacity: 0.75
+      });
+
+      tooltip.add(new Kinetic.Tag({
+        fill: 'green',
+        pointerDirection: 'down',
+        pointerWidth: 10,
+        pointerHeight: 10,
+        lineJoin: 'round',
+        shadowColor: 'black',
+        shadowBlur: 10,
+        shadowOffset: 10,
+        shadowOpacity: 0.5
+      }));
+      
+      tooltip.add(new Kinetic.Text({
+        text: 'Bon Nadal a tot el CEP!!',
+        fontFamily: 'Calibri',
+        fontSize: 24,
+        padding: 5,
+        fill: 'black'
+      }));
+      
+      layerTool.add(tooltip);
+      stage.add(layerTool);
+}
+
+function startNoel () {
     var layerText = new Kinetic.Layer();
-    var textpath = new Kinetic.TextPath({
-        x: 100,
-        y: 50,
-        fill: '#333',
-        fontSize: '24',
-        fontFamily: 'Arial',
-        text: 'Bon Nadal a tot el Centre d\'Estudis Politècnics',
-        data: 'M10,10 C0,0 10,150 100,100 S300,150 400,50'
-    });
-    layerText.add(textpath);
-    stage.add(layerText);
+    var noel = new Image();
+      noel.onload = function() {
+        var santa = new Kinetic.Image({
+          x: 600,
+          y: 100,
+          image: noel,
+          width: 300,
+          height: 300
+        });
+        layerText.add(santa);
+        stage.add(layerText);
+      };
+      
+      noel.src = 'dist/img/santa.png';
+      
 }
 
 function newCopo (){
