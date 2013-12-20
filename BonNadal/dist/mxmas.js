@@ -11,7 +11,7 @@ var stage = new Kinetic.Stage({
 newCopo();
 setInterval (newCopo, 1500);
 startNoel ();
-startTooltip ();
+
 
 function startTooltip (){
     var layerTool = new Kinetic.Layer();
@@ -56,9 +56,14 @@ function startNoel () {
           width: 300,
           height: 300
         });
+        
+        santa.on('click', function() {
+          startTooltip ();
+        });
         layerText.add(santa);
         stage.add(layerText);
       };
+      
       
       noel.src = 'dist/img/santa.png';
       
