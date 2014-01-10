@@ -882,8 +882,8 @@ pre code {
 .col-lg-12 {
   position: relative;
   min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .col-xs-1,
@@ -4440,7 +4440,6 @@ textarea.input-group-sm > .input-group-btn > .btn {
   margin-right: -15px;
   margin-left: -15px;
 }
-
 @media (min-width: 768px) {
   .container > .navbar-header,
   .container > .navbar-collapse {

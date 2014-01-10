@@ -1,11 +1,12 @@
 body { 
     display: block;
     width:100%;
-    margin:0;
+    margin: 0 0;
 }
 
 #content {
     width:100%;
+    background-color:black;
 }
 
 #body{
@@ -34,4 +35,19 @@ div{
 header{
     color:white;
     border-bottom: 5px solid white;
+}
+
+.no-active{
+    background-color: gray;
+    color:white !important;
+    border-radius: 2px;
+    margin:1px;
+}
+
+.no-active > a {
+    color:white !important;
+}
+
+.no-active > a > b{
+    border-top-color:black !important;
 }
