@@ -1,0 +1,35 @@
+/* 
+    Document   : css
+    Created on : 14-feb-2014, 10:27:18
+    Author     : cep
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.opciones{
+    float: left;
+    border: 1px solid blue;
+    background: none;
+    width: 165px;
+    height: 24px;
+    position:absolute;
+}
+
+.opciones[id=b], .opciones[id=d]{
+    margin-right: 10px; 
+    left:180px;
+}
+
+.opciones[id=c], .opciones[id=d] {
+    top: 28px;
+}
+
+.resultados {
+    position:absolute;
+    left: 57px;
+    top: 288px;
+}
